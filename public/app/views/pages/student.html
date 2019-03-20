@@ -1,0 +1,62 @@
+<div class="container">
+
+    <div class="center-card">
+  
+      <div class="card box-border is-paddingless" style="background-color: transparent;">
+  
+        <div class="card-content" ng-controller="mainCtrl as main">
+          <div class="field has-addons has-addons-centered">
+            <div class="control has-icons-left is-expanded ">
+        <label style="color: white; font-family: 'Comfortaa', cursive; font-size: 1.1rem;">Filter by Any:</label>
+        <input ng-model="main.searchText.$" class="input is-medium search-box-border body-font" type="text"
+                placeholder="Search anyone by using anyfield" size="300" style="color: white; width:100%; background-color: transparent;" />
+                <label style=" color: white; font-family: 'Comfortaa', cursive; font-size: 1.1rem;">Filter by City:</label>
+        <input ng-model="main.searchText.City" class="input is-medium search-box-border body-font" type="text"
+                placeholder="Search anyone by using anyfield" size="300" style="color: white; width:100%; background-color: transparent;" />
+                <label style="color: white; font-family: 'Comfortaa', cursive; font-size: 1.1rem;">Filter by Game:</label>
+        <input ng-model="main.searchText.Game" class="input is-medium search-box-border body-font" type="text"
+                placeholder="Search anyone by using anyfield" size="300" style="color: white; width:100%; background-color: transparent;" />
+              
+              </span>
+  
+            </div>
+            
+          </div>
+          <div class="table-container">
+  
+            <table class="table  body-font is-hoverable is-narrow is-bordered is-fullwidth" style="background-color: transparent;  ">
+              <thead class="table-header">
+                <tr>
+                  
+                <th style="color: white;"><abbr title="Regstration Number">CourtID</abbr></th>
+                <th style="color: white;">Street</th>
+                <th style="color: white;"><abbr title="Component 1 Marks">City</abbr></th>
+                <th style="color: white;"><abbr title="Component 2 Marks">Country</abbr></th>
+                <th style="color: white;"><abbr title="Total Marks in Continuous Evaluation System">Game</abbr></th>
+                <th style="color: white;"><abbr title="Total Marks in Continuous Evaluation System">Start Time</abbr></th>
+                <th style="color: white;"><abbr title="Total Marks in Continuous Evaluation System">End Time</abbr></th>
+              
+                </tr>
+              </thead>
+  
+              <tbody ng-repeat="x in main.data | filter:main.searchText">
+                <tr>
+                  <td>{{ x.CourtID }}</td>
+                  <td>{{ x.Street }}</td>
+                  <td>{{ x.City }}</td>
+                  <td>{{ x.Country }}</td>
+                  <td>{{ x.Game }}</td>
+                  <td>{{ x.StartTime }}</td>
+                  <td>{{ x.EndTime }}</td>
+                </tr>
+  
+  
+              </tbody>
+            </table>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  

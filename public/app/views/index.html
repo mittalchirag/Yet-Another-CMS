@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Court Management System</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+    crossorigin="anonymous">
+  <!-- Bootstrap theme -->
+  <link href="assets/css/bootstrap-theme.css" rel="stylesheet">
+  <!--Bulma-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css.map">
+  <!--Font Awesome 5-->
+  <link rel="shortcut icon" href="images/mortarboard.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+  <!--    Custom styles for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lobster+Two|Raleway:500,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+  <link href="assets/css/mystyles.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/helpers.css">
+  <link rel="stylesheet" href="assets/css/landing.css">
+
+  <!--Animate.css-->
+  <link href="assets/css/animate.css" rel="stylesheet">
+
+  <!--AngularJS Files-->
+  <script src="assets/js/angular.js"></script>
+  <script src="//unpkg.com/angular-ui-router@0.4.2/release/angular-ui-router.js"></script>
+  <script src="assets/js/angular-cookies.js"></script>
+  <script src="assets/js/angular-route.js"></script>
+  <script src="assets/js/angular-animate.js"></script>
+  <!--Custom AngularJS Files-->
+  <script src="app/app.js"></script>
+  <script src="app/routes.js"></script>
+  <script src="app/controllers/userCtrl.js"></script>
+  <script src="app/controllers/mainCtrl.js"></script>
+  <!-- <script src="app/services/userServices.js"></script> -->
+  <script src="app/services/authServices.js"></script>
+
+
+  <!-- <link rel="stylesheet" href="assets/css/debug.css"> -->
+
+
+
+</head>
+
+<body ng-app="userApp" ng-controller="mainCtrl as main">
+
+  <section class="hero is-info is-fullheight">
+    <div class="hero-head">
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-brand">
+            <a class="navbar-item heading-text" href="../" style="font-family: 'Pacifico', cursive; font-size: 2rem;">
+              Court Management System
+            </a>
+            <span class="navbar-burger burger" data-target="navbarMenu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </div>
+          <div id="navbarMenu" class="navbar-menu" ng-controller="loginCtrl as login">
+            <div class="navbar-end">
+              <span class="navbar-item">
+                <a class="button is-white is-outlined" ui-sref="home">
+                  <span class="icon">
+                    <i class="fa fa-home"></i>
+                  </span>
+                  <span>Home</span>
+                </a>
+              </span>
+              <span class="navbar-item" ng-show="main.isLoggedIn">
+                <a class="button is-white is-outlined" ui-sref="courts">
+                  <span class="icon">
+                    <i class="fab fa-superpowers"></i>
+                  </span>
+                  <span>Book Court</span>
+                </a>
+              </span>
+              <span class="navbar-item">
+                <a class="button is-white is-outlined" href="https://github.com/mittalchirag/GradingSystem/blob/master/README.md">
+                  <span class="icon">
+                    <i class="fas fa-book"></i>
+                  </span>
+                  <span>Documentation</span>
+                </a>
+              </span>
+              <span class="navbar-item">
+                <a class="button is-white is-outlined" href="https://github.com/mittalchirag/GradingSystem">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>View Source</span>
+                </a>
+              </span>
+              
+              <span class="navbar-item" ng-show="main.isLoggedIn">
+                  <button class="button is-white is-outlined" ng-click="login.logout()">Logout</button>
+                </span>
+                <span class="navbar-item" ng-hide="main.isLoggedIn">
+                    <button class="button is-white is-outlined" ui-sref="login">Login</button>
+                  </span>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="hero-body" ui-view></div>
+
+
+  </section>
+
+
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+        crossorigin="anonymous"></script> -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+
+  <script src="assets/js/helpers.js"></script>
+
+  <script src="assets/js/bootstrap.js"></script>
+
+</body>
+
+</html>

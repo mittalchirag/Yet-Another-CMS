@@ -1,0 +1,37 @@
+<div class="hero-body" ng-controller="loginCtrl as login">
+  <div class="container has-text-centered">
+    <div class="column is-6 is-offset-3">
+      <h1 class="title">
+        <strong style="font-size: 2.25rem;">Welcome</strong>
+      </h1>
+      <h2 class="subtitle" style="font-family: 'Comfortaa', cursive; font-size: 1.25rem;">
+        A Web application which provides users functionality to book an indoor court for a game in a particular location for the preferred time slot. CMS must allow the user to choose a court based on his/her preferences of game, location and time slots.
+        Before booking a court, the user must be registered or logged in (if already registered). The user must also
+        be able to reschedule or cancel his/her booking. 
+      </h2>
+      <form class="">
+        <div class="field center">
+          
+          <div class="control  m-sm" ng-hide="main.isLoggedIn">
+            <label style="font-family: 'Comfortaa', cursive; font-size: 1.5rem;">If you are already registered:</label>
+            <button class="button is-white is-outlined" ui-sref="login" type="submit">Login</button>
+          </div>
+          
+          <div class="control  m-sm" ng-hide="main.isLoggedIn">
+              <label style="font-family: 'Comfortaa', cursive; font-size: 1.5rem;">Else:</label>
+              <button class="button is-white is-outlined" ui-sref="register" type="submit">Register</button>
+            </div>
+            
+              <div class="control  m-sm" ng-show="main.isLoggedIn">
+                  <label style="font-family: 'Comfortaa', cursive; font-size: 1.5rem;">Book a court:</label>
+                  <button class="button is-white is-outlined" ui-sref="courts" type="submit">List Courts</button>
+                  
+                  
+                </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

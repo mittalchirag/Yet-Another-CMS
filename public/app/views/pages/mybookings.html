@@ -1,0 +1,95 @@
+<div class="container">
+        <h1 class="title">
+                <strong style="font-size: 2.25rem;">Welcome {{ main.username }},</strong>
+              </h1>
+        <div class="center-card">
+      
+          <div class="card box-border is-paddingless" style="background-color: transparent;">
+      
+            <div class="card-content" ng-controller="mainCtrl as main">
+              <div class="field has-addons has-addons-centered">
+                <div class="control has-icons-left is-expanded ">
+            <label style="color: white; font-family: 'Comfortaa', cursive; font-size: 1.1rem;">Filter by Any:</label>
+            <input ng-model="main.searchText.$" class="input is-medium search-box-border body-font" type="text"
+                    placeholder="Search anyone by using anyfield" size="300" style="color: white; width:100%; background-color: transparent;" />
+                    
+                    <label style="color: white; font-family: 'Comfortaa', cursive; font-size: 1.1rem;">Filter by Game:</label>
+            <input ng-model="main.searchText.Game" class="input is-medium search-box-border body-font" type="text"
+                    placeholder="Search anyone by using anyfield" size="300" style="color: white; width:100%; background-color: transparent;" />
+                  
+                  </span>
+      
+                </div>
+                
+              </div>
+              <div class="table-container">
+      
+                <table class="table  body-font is-narrow is-bordered is-fullwidth" style="background-color: transparent;  ">
+                  <thead class="table-header">
+                    <tr>
+                      
+                    <th style="color: white;"><abbr title="Regstration Number">CourtID</abbr></th>
+                    <th style="color: white;"><abbr title="Total Marks in Continuous Evaluation System">UserID</abbr></th>
+                    <th style="color: white;"><abbr title="Total Marks in Continuous Evaluation System">Start Time</abbr></th>
+                    <th style="color: white;"><abbr title="Total Marks in Continuous Evaluation System">End Time</abbr></th>
+                    <th style="color: white;"><abbr title="Total Marks in Continuous Evaluation System">Game</abbr></th>
+                    <th style="color: white;"><abbr title="Total Marks in Continuous Evaluation System">Reschedule?</abbr></th>
+                    <th style="color: white;"><abbr title="Total Marks in Continuous Evaluation System">Cancel?</abbr></th>
+                  
+                    </tr>
+                  </thead>
+      
+                  <tbody ng-repeat="x in main.myBookingData | filter:main.searchText">
+                    <tr>
+                      <td>{{ x.CourtID }}</td>
+                      <td>{{ x.UserID }}</td>
+                      <td>{{ x.BookingStartTime }}</td>
+                      <td>{{ x.BookingEndTime }}</td>
+                      <td>{{ x.Game }}</td>
+                      <td><input type="button" class="button is-white is-outlined" value="Reschedule" ng-model="main.select" name="reschedule" ng-click="main.showDisclaimer(x)"  /></td>
+                      <td><input type="button" class="button is-white is-outlined" value="Cancel" ng-model="main.select" name="cancel" ng-click="main.cancelDisclaimer(x)"  /></td>                    
+                    </tr>
+      
+      
+                  </tbody>
+                </table>
+              </div>
+              <div id="rescheduling" class="modal">
+                    <div class="modal-background"></div>
+                    <div class="modal-card">
+                      <header class="modal-card-head">
+                        <p class="modal-card-title">DISCLAIMER for rescheduling</p>
+                        <button class="delete" aria-label="close" ng-click="main.goBack()"></button>
+                      </header>
+                      <section class="modal-card-body">
+                        By clicking on 'Proceed' below, your booking will be deleted and you'll be redirected to booking page for new booking.
+                      </section>
+                      <footer class="modal-card-foot">
+                        <button class="button is-success" ng-click="main.rescheduleBooking()">Proceed</button>
+                        <button class="button" ng-click="main.goBack()">Cancel</button>
+                      </footer>
+                    </div>
+                </div>
+
+                  <div id="cancelling"  class="modal">
+                        <div class="modal-background"></div>
+                        <div class="modal-card">
+                          <header class="modal-card-head">
+                            <p class="modal-card-title">DISCLAIMER for cancelling</p>
+                            <button class="delete" aria-label="close" ng-click="main.goBack()"></button>
+                          </header>
+                          <section class="modal-card-body">
+                            By clicking on 'Proceed' below, your booking will be canceled.
+                          </section>
+                          <footer class="modal-card-foot">
+                            <button class="button is-success" ng-click="main.cancelBooking()">Proceed</button>
+                            <button class="button" ng-click="main.goBack()">No, Go back</button>
+                          </footer>
+                        </div>
+                      </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    

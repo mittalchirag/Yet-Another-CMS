@@ -1,0 +1,122 @@
+<div class="container">
+        <div class="columns">
+            <div class="column" ng-controller="regCtrl as register">
+    
+                <h1 class="title has-text-centered register-heading-text">Create an Account</h1>
+                <form name="regForm" ng-submit="register.regUser(regData);" >
+    
+    
+                    <div class="field">
+                        <label class="label register-text">Name</label>
+                        <div class="control">
+                            <input id="name" class="input  register-input-field register-text" name="name" type="text" placeholder="Enter your full name" ng-model="register.regData.name"
+                                ng-class="{ 'is-success':(regForm.name.$valid && !regForm.name.$pristine), 
+                                            'is-danger': (!regForm.name.$valid && !regForm.name.$pristine)||(regForm.$submitted && !regForm.name.$valid)}"
+                                required>
+                            <p ng-show="(!regForm.name.$pristine && regForm.name.$error.required) || (regForm.$submitted && regForm.name.$error.required)"
+                                class="help is-danger">Your Name is required</p>
+                        </div>
+                    </div>
+                    <div class="field">
+                            <label class="label register-text">Phone Number</label>
+                            <div class="control">
+                                <input id="phone" class="input  register-input-field register-text" name="phone" type="text" placeholder="Enter your full phone number" ng-model="register.regData.phone"
+                                    ng-class="{ 'is-success':(regForm.phone.$valid && !regForm.phone.$pristine), 
+                                                'is-danger': (!regForm.phone.$valid && !regForm.phone.$pristine)||(regForm.$submitted && !regForm.phone.$valid)}"
+                                    required>
+                                <p ng-show="(!regForm.phone.$pristine && regForm.phone.$error.required) || (regForm.$submitted && regForm.phone.$error.required)"
+                                    class="help is-danger">Your PhoneNumber is required</p>
+                            </div>
+                        </div>
+                    <div class="field">
+                        <label class="label register-text">Username</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input id="username" class="input register-input-field register-text" type="text" placeholder="Enter your user handle" name="username"
+                                ng-model="register.regData.username" ng-class="{ 'is-success':(regForm.username.$valid && !regForm.username.$pristine)||(!register.usernameInvalid && !regForm.username.$pristine), 'is-danger': (!regForm.username.$valid && !regForm.username.$pristine)||(regForm.$submitted && !regForm.username.$valid)||(register.usernameInvalid && !regForm.username.$pristine)}"
+                                ng-change="register.checkUsername(register.regData.username);" ng-minlength="3" ng-maxlength="50"
+                                required>
+    
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            <span ng-show="(!register.usernameInvalid && !regForm.username.$pristine && regForm.username.$valid && !regForm.username.$error.minlength && !regForm.username.$error.maxlength && !regForm.username.$error.required)"
+                                class="icon is-small is-right">
+                                <i class="fas fa-check " style="color:greenyellow;"> </i>
+                            </span>
+                            <span ng-show="(!regForm.username.$pristine && (register.usernameInvalid || !regForm.username.$valid || regForm.username.$error.minlength || regForm.username.$error.maxlength || regForm.username.$error.required))"
+                                class="icon is-small is-right">
+                                <i class="fas fa-exclamation-triangle" style="color:#cc4a37;"></i>
+                            </span>
+                            <p ng-show="(!regForm.username.$pristine && regForm.username.$error.required) || (regForm.$submitted && regForm.username.$error.required)"
+                                class="help is-danger">User Name is required</p>
+                            <ul class="help is-danger">
+                                <li ng-show="(!regForm.username.$pristine && regForm.username.$error.minlength) || (!regForm.username.$pristine && regForm.username.$error.maxlength)">Username must be of atleast 3 characters and atmost 50 characters</li>
+                                <li ng-show="(register.usernameInvalid && !regForm.username.$pristine && !regForm.username.$error.minlength && !regForm.username.$error.required && !regForm.username.$error.maxlength)">Username already exists</li>
+                            </ul>
+                        </div>
+                    </div>
+    
+  
+    
+          
+                    <div class="field">
+                        <label class="label register-text">Password</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input id="password" class="input  register-input-field register-text" name="password" type="password" ng-model="register.regData.password"
+                                zxcvbn="register.regData.passwordStrength" zx-extras="regForm" zx-min-score="2"
+                                ng-class="{ 'is-success':(regForm.password.$valid && !regForm.password.$pristine), 
+                                            'is-danger': (!regForm.password.$valid && !regForm.password.$pristine)||(regForm.$submitted && !regForm.password.$valid)}"
+                                ng-pattern="/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])(?=.*?[\W]).{8,}$/" ng-minlength="8"
+                                required>
+                            
+    
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-key"></i>
+                            </span>
+                            <p ng-show="(!regForm.password.$pristine && regForm.password.$error.required) || (regForm.$submitted && regForm.password.$error.required)"
+                                class="help is-danger">Password is required</p>
+                            <ul ng-show="(!regForm.password.$pristine && regForm.password.$error.pattern) || (!regForm.password.$pristine && regForm.password.$error.minlength) " class="help is-danger">
+                                <li>Must contain a special character</li>
+                                <li>Must contain a lowercase and a uppercase letter</li>
+                                <li>Must contain a digit</li>
+                                <li>Must be of at least 8 characters long</li>
+                            </ul>
+                        </div>
+                    </div>
+    
+    
+                   
+         
+    
+                    <div class="field">
+                        <div class="control">
+                            <label class="checkbox register-text">
+                                <input type="checkbox" required> I agree to the
+                                <a href="#">Code of Conduct</a>
+                            </label>
+                        </div>
+                    </div>
+    
+    
+    
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button id="submit" type="submit" name="submit" class="button is-link" ng-disabled="regForm.$invalid">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                
+    
+                <div class="row show-hide-message" ng-show="register.successMsg">
+                    <div class="alert alert-success"> {{ register.successMsg }} </div>
+                </div>
+    
+                <br>
+    
+                <div class="row show-hide-message" ng-show="register.errorMsg">
+                    <div class="alert alert-warning"> {{ register.errorMsg }} </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
